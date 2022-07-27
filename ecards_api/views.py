@@ -9,7 +9,11 @@ import requests
 
 class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
-    serializer_class = CardSerializer 
+    serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 # Create your views here.
@@ -18,21 +22,20 @@ class GreetingCardCreate(generics.ListCreateAPIView):
 """
 @api_view(['GET'])
 def getDankMeme(request):
-	res = requests.get('https://meme-api.herokuapp.com/gimme')
-	data = res.json()
+    res = requests.get('https://meme-api.herokuapp.com/gimme')
+    data = res.json()
 
-	return Response({
-		'team': 'Team Sugar Gliders',
-		'description': 'We got this team 😎, if you"re feeling down there"s a link here where you can see a funny Meme. Use it to lift your spirit.',
-		'dank_meme_image': data['url']
-		})
+    return Response({
+        'team': 'Team Sugar Gliders',
+        'description': 'We got this team 😎, if you"re feeling down there"s a link here where you can see a funny Meme. Use it to lift your spirit.',
+        'dank_meme_image': data['url']
+        })
 
 
 """
 GET /followers - get all list of users you follow
 """
 class FollowersListCreate(generics.ListCreateAPIView):
-	queryset = Follow.objects.all()
-	serializer_class = FollowSerializer	
-	permission_classes = []
-
+    queryset = Follow.objects.all()
+    serializer_class = FollowSerializer
+    permission_classes = []
