@@ -4,6 +4,26 @@ Base url for all endpoints:
 
 - `<BASE_URL>`: `https://sg-ecard-api.herokuapp.com`
 
+## Home page
+
+Get's you a free meme to lift your spirit whenever you're feeling down 😌
+
+- method: `GET`
+- url: `<BASE_URL>`
+- response: an abject that contains a random Meme:
+
+```
+{
+  "team": "Team Sugar Gliders",
+  "description": "We got this team 😎, if you\"re feeling
+      down there\"s a link here where you can see a funny Meme.
+      Use it to lift your spirit.",
+  "dank_meme_image": "https://i.redd.it/hsx65uf65yd91.jpg"
+}
+```
+
+<br />
+
 ## User Authentication
 
 - **Create user**
