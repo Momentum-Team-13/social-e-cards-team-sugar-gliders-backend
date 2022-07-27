@@ -5,16 +5,16 @@ import requests
 
 
 class CardSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
 
-	class Meta:
-		model = GreetingCard
-		fields = ['id', 'card_color_list', 'card_color', 'card_owner', 'card_inner_message', 'card_outer_message', 'card_image']
-
+    class Meta:
+        model = GreetingCard
+        fields = "__all__"
 
 
 class FollowSerializer(serializers.ModelSerializer):
-	follower = serializers.ReadOnlyField(source='user.username')
+    follower = serializers.ReadOnlyField(source='user.username')
 
-	class Meta:
-		model = Follow
-		field = "__all__"
+    class Meta:
+        model = Follow
+        fields = "__all__"
