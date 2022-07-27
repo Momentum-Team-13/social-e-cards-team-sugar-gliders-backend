@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
-from ecards_api.models import Follow
-from ecards_api.serializers import FollowSerializer
-import requests
 from rest_framework.decorators import api_view
+from ecards_api.models import GreetingCard, Follow
+from ecards_api.serializers import CardSerializer, FollowSerializer
 from rest_framework.response import Response
+import requests
+
+
+class GreetingCardCreate(generics.ListCreateAPIView):
+    queryset = GreetingCard.objects.all()
+    serializer_class = CardSerializer 
+
 
 # Create your views here.
 """

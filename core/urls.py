@@ -13,16 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from ecards_api import views
 from django.contrib import admin
 from django.urls import path, include
 from ecards_api import views
 
 urlpatterns = [
     path('', views.getDankMeme),
-	path('auth/', include('djoser.urls')),
-	path('auth/', include('djoser.urls.authtoken')),
+	  path('auth/', include('djoser.urls')),
+	  path('auth/', include('djoser.urls.authtoken')),
     path('admin/', admin.site.urls),
     path('followers/', views.FollowersListCreate.as_view())
+    path('ecards/', views.GreetingCardCreate.as_view())
+  ]
 ]
-
-
