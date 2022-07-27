@@ -4,7 +4,7 @@ Base url for all endpoints:
 
 - `<BASE_URL>`: `https://sg-ecard-api.herokuapp.com`
 
-## Home page
+## Home
 
 Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
