@@ -20,10 +20,10 @@ from ecards_api import views
 
 urlpatterns = [
     path('', views.getDankMeme),
-	  path('auth/', include('djoser.urls')),
-	  path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
     path('admin/', admin.site.urls),
-    path('followers/', views.FollowersListCreate.as_view())
+    path('followers/', views.FollowersListCreate.as_view()),
     path('ecards/', views.GreetingCardCreate.as_view())
   ]
-]
+
