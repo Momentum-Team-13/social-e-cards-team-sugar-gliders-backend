@@ -39,5 +39,14 @@ class FollowersListCreate(generics.ListCreateAPIView):
 	permission_classes = [permissions.IsAuthenticated]
 
 	def perform_create(self, serializer):
-		user_following = User.objects.get(pk=self.request.data['following']) 
-		serializer.save(user=self.request.user, following=user_following)
+		user_following = User.objects.get(pk=self.request.data['following'])
+		if user_following.id is not self.request.user.id:
+			serializer.save(user=self.request.user, following=user_following)
+		else:
+			return Response({"message": "Users cannot follow themselves"})
+
+	def list(self, request, *args, **kwargs):
+		queryset = self.filter_queryset(self.get_queryset()).filter(user=request.user)
+		serializer = self.get_serializer(queryset, many=True)
+		return Response(serializer.data)
+
