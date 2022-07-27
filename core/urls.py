@@ -18,6 +18,7 @@ from django.urls import path, include
 from ecards_api import views
 
 urlpatterns = [
+    path('', views.getDankMeme),
 	path('auth/', include('djoser.urls')),
 	path('auth/', include('djoser.urls.authtoken')),
     path('admin/', admin.site.urls),
