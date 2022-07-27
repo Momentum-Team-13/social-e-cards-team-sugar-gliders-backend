@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework.authtoken',
     'ecards_api',
-    'djoser'
+    'djoser',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
