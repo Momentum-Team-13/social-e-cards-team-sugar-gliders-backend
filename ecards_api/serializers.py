@@ -13,8 +13,8 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class FollowSerializer(serializers.ModelSerializer):
-	follower = serializers.ReadOnlyField(source='user.username')
+	following = serializers.ReadOnlyField(source='user.username')
 
 	class Meta:
 		model = Follow
-		field = "__all__"
+		fields = "__all__"

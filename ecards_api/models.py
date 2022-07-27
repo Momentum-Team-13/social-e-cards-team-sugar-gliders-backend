@@ -25,4 +25,5 @@ class GreetingCard(TimeStamp):
 	card_image = models.CharField(max_length=275)
 
 class Follow(TimeStamp):
-	follower = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+	user = models.ForeignKey('auth.User', related_name='user' on_delete=models.CASCADE)
+	following = models.ForeignKey('auth.User', related_name='follower' on_delete=models.CASCADE)

@@ -5,6 +5,7 @@ from ecards_api.models import GreetingCard, Follow
 from ecards_api.serializers import CardSerializer, FollowSerializer
 from rest_framework.response import Response
 import requests
+from django.contrib.auth.models import User
 
 
 class GreetingCardCreate(generics.ListCreateAPIView):
@@ -29,10 +30,14 @@ def getDankMeme(request):
 
 
 """
-GET /followers - get all list of users you follow
+GET /followers - get list of users follow
+POST /followers - follow a user 
 """
 class FollowersListCreate(generics.ListCreateAPIView):
 	queryset = Follow.objects.all()
 	serializer_class = FollowSerializer	
-	permission_classes = []
-
+	permission_classes = [permissions.IsAuthenticated]
+	def perform_create(self, serializer):
+		user_following = User.objects.get(pk=self.request.data['following']) 
+		print(f'ruqest ----- {user_following}')
+		serializer.save(following=user_following, user=self.request.user)
