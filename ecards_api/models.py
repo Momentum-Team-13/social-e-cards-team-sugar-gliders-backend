@@ -27,3 +27,8 @@ class GreetingCard(TimeStamp):
 class Follow(TimeStamp):
 	user = models.ForeignKey('auth.User', related_name='user', on_delete=models.CASCADE)
 	following = models.ForeignKey('auth.User', related_name='follower', on_delete=models.CASCADE)
+
+	class Meta:
+		constraints = [
+			models.UniqueConstraint(fields=['user', 'following'], name='unique_following')
+		]

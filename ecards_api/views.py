@@ -38,11 +38,6 @@ class FollowersListCreate(generics.ListCreateAPIView):
 	serializer_class = FollowSerializer	
 	permission_classes = [permissions.IsAuthenticated]
 
-	def post(self, request, *args, **kwargs):
-		print(f'h------------', request.data, self.request.user)
-		return self.list(request, *args, **kwargs)
-
 	def perform_create(self, serializer):
-		print(f'ruqest ----- {self.request.user}')
 		user_following = User.objects.get(pk=self.request.data['following']) 
 		serializer.save(user=self.request.user, following=user_following)
