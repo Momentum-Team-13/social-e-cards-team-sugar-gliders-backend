@@ -3,8 +3,12 @@ from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from ecards_api.models import GreetingCard, Follow
 from ecards_api.serializers import CardSerializer, FollowSerializer
+from ecards_api.filters import IsOwnerFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend
+from ecards_api.permissions import IsOwner
 from rest_framework.response import Response
 import requests
+from django.contrib.auth.models import User
 
 
 class GreetingCardCreate(generics.ListCreateAPIView):
@@ -33,9 +37,29 @@ def getDankMeme(request):
 
 
 """
-GET /followers - get all list of users you follow
+GET /followers - get list of users they are following
+POST /followers - follow a user 
 """
 class FollowersListCreate(generics.ListCreateAPIView):
-    queryset = Follow.objects.all()
-    serializer_class = FollowSerializer
-    permission_classes = []
+	queryset = Follow.objects.all()
+	serializer_class = FollowSerializer	
+	permission_classes = [permissions.IsAuthenticated]
+	filter_backends = [DjangoFilterBackend, IsOwnerFilterBackend]
+
+	def perform_create(self, serializer):
+		user_following = User.objects.get(pk=self.request.data['following'])
+		if user_following.id is not self.request.user.id:
+			serializer.save(user=self.request.user, following=user_following)
+		else:
+			return Response({"message": "Users cannot follow themselves"})
+
+
+"""
+DELETE /followers/<int:pk/ - remove user from followers list
+"""
+class FollowersRemove(generics.DestroyAPIView):
+	queryset = Follow.objects.all()
+	serializer_class = FollowSerializer
+	permission_classes = [permissions.IsAuthenticated, IsOwner]
+
+

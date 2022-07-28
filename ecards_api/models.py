@@ -23,6 +23,13 @@ class GreetingCard(TimeStamp):
 	card_inner_message = models.TextField(max_length=300)
 	card_outer_message = models.TextField(max_length=300)
 	card_image = models.CharField(max_length=275)
+	
 
 class Follow(TimeStamp):
-	follower = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+	user = models.ForeignKey('auth.User', related_name='user', on_delete=models.CASCADE)
+	following = models.ForeignKey('auth.User', related_name='follower', on_delete=models.CASCADE)
+
+	class Meta:
+		constraints = [
+			models.UniqueConstraint(fields=['user', 'following'], name='unique_following')
+		]

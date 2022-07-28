@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from ecards_api.models import GreetingCard, Follow
-from rest_framework.decorators import api_view
-import requests
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = User
+		fields = ['id', 'username', 'email']
 
 
 class CardSerializer(serializers.ModelSerializer):
@@ -13,8 +19,9 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class FollowSerializer(serializers.ModelSerializer):
-    follower = serializers.ReadOnlyField(source='user.username')
+	following = serializers.ReadOnlyField(source='following.id')
+	user_following = UserSerializer(source='following', read_only=True)
 
-    class Meta:
-        model = Follow
-        fields = "__all__"
+	class Meta:
+		model = Follow
+		fields = ['id', 'user_following', 'following']

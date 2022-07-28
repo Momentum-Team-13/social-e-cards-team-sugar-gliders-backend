@@ -24,6 +24,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('admin/', admin.site.urls),
     path('followers/', views.FollowersListCreate.as_view()),
+    path('followers/<int:pk>', views.FollowersRemove.as_view()),
     path('ecards/', views.GreetingCardCreate.as_view())
   ]
 
