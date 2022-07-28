@@ -11,7 +11,11 @@ import requests
 from django.contrib.auth.models import User
 
 
-
+"""
+GET /ecards - get list of all greeting cards
+POST /ecards - create a new greeting card
+Get /ecards/me/ - show greeting cards created for that user
+"""
 class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
     serializer_class = CardSerializer

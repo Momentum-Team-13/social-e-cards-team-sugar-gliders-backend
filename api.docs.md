@@ -140,3 +140,115 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
     - you must also specify the user id (to remove) in the url, example:
       - `<BASE_URL>/followers/3`
   - response: no response
+
+  <br />
+
+## Seeing and Creating Greeting Cards
+
+- **View all greeting cards**
+  - method: `GET`
+  - url: `<BASE_URL>/ecards/`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an array of objects:
+
+```
+          [
+            {
+              "id": 1,
+              "created_at": "2022-07-28T19:47:27.045675Z",
+              "updated_at": "2022-07-28T19:47:27.045712Z",
+              "card_color_list": "#00FF00",
+              "card_color": null,
+              "card_inner_message": "test inner message",
+              "card_outer_message": "test outer message",
+              "card_image": "test card image",
+              "card_owner": 1
+            },
+            {
+              "id": 2,
+              "created_at": "2022-07-28T20:39:51.819332Z",
+              "updated_at": "2022-07-28T20:39:51.819382Z",
+              "card_color_list": "#00FF00",
+              "card_color": null,
+              "card_inner_message": "test inner message 2",
+              "card_outer_message": "test outer message 2",
+              "card_image": "test card image 2",
+              "card_owner": 1
+            }
+          ]
+
+```
+
+  <br />
+
+- **Create greeting card**
+  - method: `Post`
+  - url: `<BASE_URL>/ecards/`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+    - JSON data in request body: `{ "card_color_list": "00FF00", "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image", "card_owner": 1 (user Pk)}`
+  - response: 201 Created:
+
+```
+      {
+        "id": 3,
+        "created_at": "2022-07-28T21:42:30.175271Z",
+        "updated_at": "2022-07-28T21:42:30.175310Z",
+        "card_color_list": "00FF00",
+        "card_color": null,
+        "card_inner_message": "test inner message",
+        "card_outer_message": "test outer message",
+        "card_image": "test card image",
+        "card_owner": 1
+      }
+
+```
+
+  <br />
+
+- **View only my greeting cards**
+  - method: `GET`
+  - url: `<BASE_URL>/ecards/me/`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an array of user objects:
+
+```
+        [
+          {
+            "id": 1,
+            "created_at": "2022-07-28T19:47:27.045675Z",
+            "updated_at": "2022-07-28T19:47:27.045712Z",
+            "card_color_list": "#00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message",
+            "card_outer_message": "test outer message",
+            "card_image": "test card image",
+            "card_owner": 1
+          },
+          {
+            "id": 2,
+            "created_at": "2022-07-28T20:39:51.819332Z",
+            "updated_at": "2022-07-28T20:39:51.819382Z",
+            "card_color_list": "#00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message 2",
+            "card_outer_message": "test outer message 2",
+            "card_image": "test card image 2",
+            "card_owner": 1
+          },
+          {
+            "id": 3,
+            "created_at": "2022-07-28T21:42:30.175271Z",
+            "updated_at": "2022-07-28T21:42:30.175310Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message 2",
+            "card_outer_message": "test outer message 2",
+            "card_image": "test card image 2",
+            "card_owner": 1
+          }
+        ]
+
+```
