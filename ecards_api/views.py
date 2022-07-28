@@ -30,7 +30,7 @@ def getDankMeme(request):
 
 
 """
-GET /followers - get list of users follow
+GET /followers - get list of users they are following
 POST /followers - follow a user 
 """
 class FollowersListCreate(generics.ListCreateAPIView):
@@ -50,3 +50,14 @@ class FollowersListCreate(generics.ListCreateAPIView):
 		serializer = self.get_serializer(queryset, many=True)
 		return Response(serializer.data)
 
+
+"""
+DELETE /followers/<int:pk/ - remove user from followers list
+"""
+
+class FollowersRemove(generics.DestroyAPIView):
+	queryset = Follow.objects.all()
+	serializer_class = FollowSerializer
+	permission_classes = [permissions.IsAuthenticated]
+
+	
