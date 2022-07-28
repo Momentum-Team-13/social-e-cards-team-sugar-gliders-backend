@@ -91,7 +91,6 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 <br />
 
 - **Get all followers for authenticated user**
-
   - method: `GET`
   - url: `<BASE_URL>/followers/`
   - data: you need to set authorization header with the token as the value

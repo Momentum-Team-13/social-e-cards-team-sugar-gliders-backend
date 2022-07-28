@@ -9,13 +9,13 @@ class TimeStamp(models.Model):
         abstract = True
 
 class GreetingCard(TimeStamp):
-	GREEN = '#00FF00'
-	BLUE = '#0000FF'
-	RED = '#ff0000'
+	GREEN = '00FF00'
+	BLUE = '0000FF'
+	RED = 'ff0000'
 	COLOR_CHOICES = [
-		(GREEN, '#00FF00'),
-		(RED, '#ff0000'),
-		(BLUE, '#0000FF'),
+		(GREEN, '00FF00'),
+		(RED, 'ff0000'),
+		(BLUE, '0000FF'),
 	]
 	card_color_list = models.CharField(max_length=7, choices=COLOR_CHOICES, default=GREEN)
 	card_color = models.CharField(null=True, max_length=275)
