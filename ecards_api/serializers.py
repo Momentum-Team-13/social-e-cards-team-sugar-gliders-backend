@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class CardSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
 
+
     class Meta:
         model = GreetingCard
         fields = "__all__"

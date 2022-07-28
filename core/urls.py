@@ -16,7 +16,7 @@ Including another URLconf
 from ecards_api import views
 from django.contrib import admin
 from django.urls import path, include
-from ecards_api import views
+
 
 urlpatterns = [
     path('', views.getDankMeme),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('followers/', views.FollowersListCreate.as_view()),
     path('followers/<int:pk>', views.FollowersRemove.as_view()),
-    path('ecards/', views.GreetingCardCreate.as_view())
+    path('ecards/', views.GreetingCardCreate.as_view()),
+    path('ecards/me/', views.GreetingCardCreate.as_view()),
   ]
 
