@@ -5,7 +5,7 @@ from ecards_api.models import GreetingCard, Follow
 from ecards_api.serializers import CardSerializer, FollowSerializer
 from ecards_api.filters import IsOwnerFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
-from library_api.permissions import IsOwner
+from ecards_api.permissions import IsOwner
 from rest_framework.response import Response
 import requests
 from django.contrib.auth.models import User
