@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CardSerializer(serializers.ModelSerializer):
-    card_owner = serializers.ReadOnlyField(source='user')
+    card_owner = serializers.ReadOnlyField(source='user.username')
 
 
     class Meta:
