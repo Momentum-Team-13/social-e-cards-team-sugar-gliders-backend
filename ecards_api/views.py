@@ -28,6 +28,20 @@ class GreetingCardCreate(generics.ListCreateAPIView):
         return GreetingCard.objects.all().filter(card_owner=self.request.user)
 
 
+"""
+Patch /ecards/<int:pk - edit the chosen greeting card
+Delete /ecards/<int:pk - delete the chosen greeting card
+Get /ecards/<int:pk - show the chosen greeting card
+"""
+class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
+    queryset = GreetingCard.objects.all()
+    serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_update(self, serializer):
+        serializer.save(card_owner=self.request.user)
+
+
 # Create your views here.
 """
   Home page, get's you a free meme

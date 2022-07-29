@@ -252,3 +252,87 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
         ]
 
 ```
+
+  <br />
+
+
+## Edit and Delete Greeting Cards
+
+- **View only my selected greeting card**
+  - method: `GET`
+  - url: `<BASE_URL>/ecards/<int:pk`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an array of the objects for the particular card:
+
+```
+        [
+          {
+            "id": 3,
+            "created_at": "2022-07-28T21:42:30.175271Z",
+            "updated_at": "2022-07-28T21:42:30.175310Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message 2",
+            "card_outer_message": "test outer message 2",
+            "card_image": "test card image 2",
+            "card_owner": 1
+          }
+        ]
+
+```
+
+ <br />
+
+ - **Edit only my selected greeting card**
+  - method: `PATCH`
+  - url: `<BASE_URL>/ecards/<int:pk`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an updated array of the objects that were changed for the particular card:
+
+```
+  Example:
+
+        Before PATCH (edit/udpate):
+        [
+          {
+            "id": 3,
+            "created_at": "2022-07-28T21:42:30.175271Z",
+            "updated_at": "2022-07-28T21:42:30.175310Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message 2",
+            "card_outer_message": "test outer message 2",
+            "card_image": "test card image 2",
+            "card_owner": 1
+          }
+        ]
+
+              Send PATCH Request
+
+        After PATCH (edit/udpate):
+        [
+          {
+            "id": 3,
+            "created_at": "2022-07-28T21:42:30.175271Z",
+            "updated_at": "2022-07-28T21:42:30.175310Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "test inner message Patch",
+            "card_outer_message": "test outer message Patch",
+            "card_image": "test card image Patch",
+            "card_owner": 1
+          }
+        ]
+
+```
+
+<br />
+
+ - **Delete only my selected greeting card**
+  - method: `DELETE`
+  - url: `<BASE_URL>/ecards/<int:pk`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: No Response

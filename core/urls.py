@@ -27,5 +27,6 @@ urlpatterns = [
     path('followers/<int:pk>', views.FollowersRemove.as_view()),
     path('ecards/', views.GreetingCardCreate.as_view()),
     path('ecards/me/', views.GreetingCardCreate.as_view()),
+    path('ecards/<int:pk>', views.GreetingCardEdit.as_view()),
   ]
 
