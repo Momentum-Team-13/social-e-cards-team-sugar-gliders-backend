@@ -12,9 +12,8 @@ from django.contrib.auth.models import User
 
 
 """
-GET /ecards - get list of all greeting cards
-POST /ecards - create a new greeting card
-Get /ecards/me/ - show greeting cards created for that user
+GET /ecards/ - get list of all greeting cards
+POST /ecards/ - create a new greeting card
 """
 class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
@@ -23,6 +22,15 @@ class GreetingCardCreate(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(card_owner=self.request.user)
+
+
+"""
+Get /ecards/me/ - show greeting cards created for that user
+"""
+class GreetingCardMe(generics.ListCreateAPIView):
+    queryset = GreetingCard.objects.all()
+    serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return GreetingCard.objects.all().filter(card_owner=self.request.user)
@@ -42,9 +50,18 @@ class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
         serializer.save(card_owner=self.request.user)
 
 
+class FollowingCards(generics.ListAPIView):
+    queryset = GreetingCard.objects.all()
+    serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return GreetingCard.objects.all().filter(card_owner=User.objects.get(pk=self.request.data['following']))
+
+
 # Create your views here.
 """
-  Home page, get's you a free meme
+Home page, get's you a free meme
 """
 @api_view(['GET'])
 def getDankMeme(request):
