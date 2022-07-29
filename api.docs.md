@@ -133,6 +133,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
   <br />
 
 - **Remove a user from following list**
+
   - method: `DELETE`
   - url: `<BASE_URL>/followers/<ID>`
   - data: you need to set authorization header with the token as the value
@@ -183,11 +184,11 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
   <br />
 
 - **Create greeting card**
-  - method: `Post`
+  - method: `POST`
   - url: `<BASE_URL>/ecards/`
   - data: you need to set authorization header with the token as the value
     - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-    - JSON data in request body: `{ "card_color_list": "00FF00", "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image", "card_owner": 1 (user Pk)}`
+    - JSON data in request body: `{ "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image"}`
   - response: 201 Created:
 
 ```
@@ -255,7 +256,6 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
   <br />
 
-
 ## Edit and Delete Greeting Cards
 
 - **View only my selected greeting card**
@@ -284,12 +284,12 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
  <br />
 
- - **Edit only my selected greeting card**
-  - method: `PATCH`
-  - url: `<BASE_URL>/ecards/<int:pk`
-  - data: you need to set authorization header with the token as the value
-    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-  - response: an updated array of the objects that were changed for the particular card:
+- **Edit only my selected greeting card**
+- method: `PATCH`
+- url: `<BASE_URL>/ecards/<int:pk`
+- data: you need to set authorization header with the token as the value
+  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+- response: an updated array of the objects that were changed for the particular card:
 
 ```
   Example:
@@ -330,9 +330,9 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
 <br />
 
- - **Delete only my selected greeting card**
-  - method: `DELETE`
-  - url: `<BASE_URL>/ecards/<int:pk`
-  - data: you need to set authorization header with the token as the value
-    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-  - response: No Response
+- **Delete only my selected greeting card**
+- method: `DELETE`
+- url: `<BASE_URL>/ecards/<int:pk`
+- data: you need to set authorization header with the token as the value
+  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+- response: No Response
