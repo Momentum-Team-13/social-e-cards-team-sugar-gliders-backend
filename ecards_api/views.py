@@ -35,8 +35,10 @@ class GreetingCardCreate(generics.ListCreateAPIView):
       
       if list_param == 'following':
         following_qs = Follow.objects.all().filter(user=self.request.user)
+        queryset = GreetingCard.objects.all().exclude(card_owner=self.request.user)
         for ob in following_qs:
-            queryset = GreetingCard.objects.all().filter(card_owner=ob.following).exclude(card_owner=self.request.user)
+            filtered_qs = GreetingCard.objects.all().filter(card_owner=ob.following).exclude(card_owner=self.request.user)
+            queryset = queryset.union(filtered_qs)
 
       return queryset
 
