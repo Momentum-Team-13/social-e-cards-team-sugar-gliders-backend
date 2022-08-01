@@ -373,3 +373,22 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
         ]
 
 ```
+
+  <br />
+
+## Edit Your User
+
+- method: `PATCH`
+- url: `<BASE_URL>/users/me`
+- data: you need to set authorization header with the token as the value
+  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+ - response: an array of users updated objects:
+
+```
+      {
+        "id": 4,
+        "username": "testuserchange",
+        "email": "editemail@test.com"
+      }
+
+```
