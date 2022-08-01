@@ -10,3 +10,12 @@ class IsOwner(permissions.BasePermission):
         # Write permissions are only allowed to the owner of the object.
         return obj.user == request.user
 
+
+class TheOwner(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an ecard object to edit it.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return obj.card_owner == request.user
+
