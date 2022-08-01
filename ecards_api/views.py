@@ -24,6 +24,20 @@ class GreetingCardCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(card_owner=self.request.user)
 
+    def get_queryset(self):
+      queryset = GreetingCard.objects.all()
+      list_param = self.request.query_params.get("list")
+
+      if list_param == 'me':
+        queryset = GreetingCard.objects.all().filter(card_owner=self.request.user)
+      
+      if list_param == 'following':
+        following_qs = Follow.objects.all().filter(user=self.request.user)
+        for ob in following_qs:
+            queryset = GreetingCard.objects.all().filter(card_owner=ob.following).exclude(card_owner=self.request.user)
+
+      return queryset
+
 
 """
 Get /ecards/me/ - show greeting cards created for that user

@@ -16,7 +16,6 @@ class CardSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = GreetingCard
-		# fields = ['id', 'card_owner']
 		fields = '__all__'
 
 
