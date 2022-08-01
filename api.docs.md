@@ -336,3 +336,40 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 - data: you need to set authorization header with the token as the value
   - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
 - response: No Response
+
+
+  <br />
+
+## View a List of Users
+
+- method: `GET`
+- url: `<BASE_URL>/users/`
+- data: you need to set authorization header with the token as the value
+  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+ - response: an array of user objects:
+
+```
+        [
+          {
+            "id": 2,
+            "username": "Testuser2",
+            "email": ""
+          },
+          {
+            "id": 1,
+            "username": "user1",
+            "email": "test@email.com"
+          },
+          {
+            "id": 3,
+            "username": "testuser3",
+            "email": ""
+          },
+          {
+            "id": 4,
+            "username": "testuser4",
+            "email": ""
+          }
+        ]
+
+```
