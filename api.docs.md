@@ -224,7 +224,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
 - **View only my greeting cards**
   - method: `GET`
-  - url: `<BASE_URL>/ecards?list=me`
+  - url: `<BASE_URL>/ecards/?list=me`
   - data: you need to set authorization header with the token as the value
     - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
   - response: an array of user objects:
@@ -269,7 +269,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
 - **View list of cards from users you follow**
   - method: `GET`
-  - url: `<BASE_URL>/ecards?list=following`
+  - url: `<BASE_URL>/ecards/?list=following`
   - data: you need to set authorization header with the token as the value
     - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
   - response: an array of user objects:
@@ -437,7 +437,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 - url: `<BASE_URL>/users/me`
 - data: you need to set authorization header with the token as the value
   - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
- - response: an array of users updated objects:
+- response: an array of users updated objects:
 
 ```
       {
@@ -447,4 +447,3 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
       }
 
 ```
-
