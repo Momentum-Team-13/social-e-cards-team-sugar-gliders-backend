@@ -6,15 +6,17 @@ from ecards_api.serializers import CardSerializer, FollowSerializer
 from ecards_api.serializers import UserSerializer
 from ecards_api.filters import IsOwnerFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
-from ecards_api.permissions import IsOwner
+from ecards_api.permissions import IsOwner, TheOwner
 from rest_framework.response import Response
 import requests
 from django.contrib.auth.models import User
 
 
 """
-GET /ecards/ - get list of all greeting cards
 POST /ecards/ - create a new greeting card
+GET /ecards/ - get list of all greeting cards
+GET /ecards?list=me - get list of all users cards
+GET /ecards?list=following - get list of all user following cards 
 """
 class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
@@ -24,17 +26,21 @@ class GreetingCardCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(card_owner=self.request.user)
 
-
-"""
-Get /ecards/me/ - show greeting cards created for that user
-"""
-class GreetingCardMe(generics.ListCreateAPIView):
-    queryset = GreetingCard.objects.all()
-    serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
     def get_queryset(self):
-        return GreetingCard.objects.all().filter(card_owner=self.request.user)
+      queryset = GreetingCard.objects.all()
+      list_param = self.request.query_params.get("list")
+
+      if list_param == 'me':
+        queryset = GreetingCard.objects.all().filter(card_owner=self.request.user)
+      
+      if list_param == 'following':
+        following_qs = Follow.objects.all().filter(user=self.request.user)
+        queryset = GreetingCard.objects.all().exclude(card_owner=self.request.user)
+        for ob in following_qs:
+            filtered_qs = GreetingCard.objects.all().filter(card_owner=ob.following).exclude(card_owner=self.request.user)
+            queryset = queryset.union(filtered_qs)
+
+      return queryset
 
 
 """
@@ -45,10 +51,8 @@ Get /ecards/<int:pk - show the chosen greeting card
 class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
     queryset = GreetingCard.objects.all()
     serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, TheOwner]
 
-    def perform_update(self, serializer):
-        serializer.save(card_owner=self.request.user)
 
 
 class FollowingCards(generics.ListAPIView):
