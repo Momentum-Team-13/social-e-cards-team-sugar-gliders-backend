@@ -54,16 +54,6 @@ class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, TheOwner]
 
 
-
-class FollowingCards(generics.ListAPIView):
-    queryset = GreetingCard.objects.all()
-    serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return GreetingCard.objects.all().filter(card_owner=User.objects.get(pk=self.request.data['following']))
-
-
 # Create your views here.
 """
 Home page, get's you a free meme

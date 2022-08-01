@@ -27,7 +27,6 @@ urlpatterns = [
     path('followers/<int:pk>', views.FollowersRemove.as_view()),
     path('ecards/', views.GreetingCardCreate.as_view()),
     path('ecards/<int:pk>', views.GreetingCardEdit.as_view()),
-    path('following/', views.FollowingCards.as_view()),
     path('users/', views.UserList.as_view()),
     path('users/me/', views.UserEdit.as_view()),
   ]
