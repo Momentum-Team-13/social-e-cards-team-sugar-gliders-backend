@@ -13,8 +13,10 @@ from django.contrib.auth.models import User
 
 
 """
-GET /ecards/ - get list of all greeting cards
 POST /ecards/ - create a new greeting card
+GET /ecards/ - get list of all greeting cards
+GET /ecards?list=me - get list of all users cards
+GET /ecards?list=following - get list of all user following cards 
 """
 class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
@@ -24,17 +26,19 @@ class GreetingCardCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(card_owner=self.request.user)
 
-
-"""
-Get /ecards/me/ - show greeting cards created for that user
-"""
-class GreetingCardMe(generics.ListCreateAPIView):
-    queryset = GreetingCard.objects.all()
-    serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
     def get_queryset(self):
-        return GreetingCard.objects.all().filter(card_owner=self.request.user)
+      queryset = GreetingCard.objects.all()
+      list_param = self.request.query_params.get("list")
+
+      if list_param == 'me':
+        queryset = GreetingCard.objects.all().filter(card_owner=self.request.user)
+      
+      if list_param == 'following':
+        following_qs = Follow.objects.all().filter(user=self.request.user)
+        for ob in following_qs:
+            queryset = GreetingCard.objects.all().filter(card_owner=ob.following).exclude(card_owner=self.request.user)
+
+      return queryset
 
 
 """

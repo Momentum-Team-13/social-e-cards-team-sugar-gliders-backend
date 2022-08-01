@@ -1,3 +1,4 @@
+from multiprocessing import managers
 from rest_framework import serializers
 from ecards_api.models import GreetingCard, Follow
 from django.contrib.auth.models import User
@@ -11,12 +12,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CardSerializer(serializers.ModelSerializer):
-    card_owner = serializers.ReadOnlyField(source='user.username')
+	card_owner = UserSerializer(read_only=True)
 
-
-    class Meta:
-        model = GreetingCard
-        fields = "__all__"
+	class Meta:
+		model = GreetingCard
+		fields = '__all__'
 
 
 class FollowSerializer(serializers.ModelSerializer):

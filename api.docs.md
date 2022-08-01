@@ -146,6 +146,35 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
 ## Seeing and Creating Greeting Cards
 
+- **Create greeting card**
+  - method: `POST`
+  - url: `<BASE_URL>/ecards/`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+    - JSON data in request body: `{ "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image"}`
+  - response: 201 Created:
+
+```
+          {
+            "id": 4,
+            "card_owner": {
+                "id": 4,
+                "username": "Bob",
+                "email": ""
+            },
+            "created_at": "2022-08-01T18:06:19.122274Z",
+            "updated_at": "2022-08-01T18:06:19.122303Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "inner message 5",
+            "card_outer_message": "hello 5",
+            "card_image": "image 5"
+          }
+
+```
+
+<br />
+
 - **View all greeting cards**
   - method: `GET`
   - url: `<BASE_URL>/ecards/`
@@ -157,6 +186,11 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
           [
             {
               "id": 1,
+              "card_owner": {
+                "id": 4,
+                "username": "Bob",
+                "email": ""
+              },
               "created_at": "2022-07-28T19:47:27.045675Z",
               "updated_at": "2022-07-28T19:47:27.045712Z",
               "card_color_list": "#00FF00",
@@ -168,6 +202,11 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             },
             {
               "id": 2,
+              "card_owner": {
+                "id": 2,
+                "username": "Julian",
+                "email": ""
+              },
               "created_at": "2022-07-28T20:39:51.819332Z",
               "updated_at": "2022-07-28T20:39:51.819382Z",
               "card_color_list": "#00FF00",
@@ -183,74 +222,91 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 
   <br />
 
-- **Create greeting card**
-  - method: `POST`
-  - url: `<BASE_URL>/ecards/`
-  - data: you need to set authorization header with the token as the value
-    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-    - JSON data in request body: `{ "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image"}`
-  - response: 201 Created:
-
-```
-      {
-        "id": 3,
-        "created_at": "2022-07-28T21:42:30.175271Z",
-        "updated_at": "2022-07-28T21:42:30.175310Z",
-        "card_color_list": "00FF00",
-        "card_color": null,
-        "card_inner_message": "test inner message",
-        "card_outer_message": "test outer message",
-        "card_image": "test card image",
-        "card_owner": 1
-      }
-
-```
-
-  <br />
-
 - **View only my greeting cards**
   - method: `GET`
-  - url: `<BASE_URL>/ecards/me/`
+  - url: `<BASE_URL>/ecards?list=me`
   - data: you need to set authorization header with the token as the value
     - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
   - response: an array of user objects:
 
 ```
-        [
-          {
-            "id": 1,
-            "created_at": "2022-07-28T19:47:27.045675Z",
-            "updated_at": "2022-07-28T19:47:27.045712Z",
-            "card_color_list": "#00FF00",
-            "card_color": null,
-            "card_inner_message": "test inner message",
-            "card_outer_message": "test outer message",
-            "card_image": "test card image",
-            "card_owner": 1
-          },
-          {
-            "id": 2,
-            "created_at": "2022-07-28T20:39:51.819332Z",
-            "updated_at": "2022-07-28T20:39:51.819382Z",
-            "card_color_list": "#00FF00",
-            "card_color": null,
-            "card_inner_message": "test inner message 2",
-            "card_outer_message": "test outer message 2",
-            "card_image": "test card image 2",
-            "card_owner": 1
-          },
-          {
+      [
+        {
             "id": 3,
-            "created_at": "2022-07-28T21:42:30.175271Z",
-            "updated_at": "2022-07-28T21:42:30.175310Z",
+            "card_owner": {
+                "id": 4,
+                "username": "Bob",
+                "email": ""
+            },
+            "created_at": "2022-07-29T12:36:50.802679Z",
+            "updated_at": "2022-07-29T12:36:50.802745Z",
             "card_color_list": "00FF00",
             "card_color": null,
-            "card_inner_message": "test inner message 2",
-            "card_outer_message": "test outer message 2",
-            "card_image": "test card image 2",
-            "card_owner": 1
-          }
-        ]
+            "card_inner_message": "inner message 3",
+            "card_outer_message": "hello 3",
+            "card_image": "image 3"
+        },
+        {
+            "id": 4,
+            "card_owner": {
+                "id": 4,
+                "username": "Bob",
+                "email": ""
+            },
+            "created_at": "2022-08-01T18:06:19.122274Z",
+            "updated_at": "2022-08-01T18:06:19.122303Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "inner message 5",
+            "card_outer_message": "hello 5",
+            "card_image": "image 5"
+        }
+    ]
+
+```
+
+  <br />
+
+- **View list of cards from users you follow**
+  - method: `GET`
+  - url: `<BASE_URL>/ecards?list=following`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an array of user objects:
+
+```
+      [
+        {
+            "id": 3,
+            "card_owner": {
+                "id": 1,
+                "username": "test user 1",
+                "email": ""
+            },
+            "created_at": "2022-07-29T12:36:50.802679Z",
+            "updated_at": "2022-07-29T12:36:50.802745Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "inner message 3",
+            "card_outer_message": "hello 3",
+            "card_image": "image 3"
+        },
+        {
+            "id": 4,
+            "card_owner": {
+                "id": 2,
+                "username": "test user 2",
+                "email": ""
+            },
+            "created_at": "2022-08-01T18:06:19.122274Z",
+            "updated_at": "2022-08-01T18:06:19.122303Z",
+            "card_color_list": "00FF00",
+            "card_color": null,
+            "card_inner_message": "inner message 5",
+            "card_outer_message": "hello 5",
+            "card_image": "image 5"
+        }
+    ]
 
 ```
 
@@ -337,7 +393,6 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
   - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
 - response: No Response
 
-
   <br />
 
 ## View a List of Users
@@ -346,7 +401,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 - url: `<BASE_URL>/users/`
 - data: you need to set authorization header with the token as the value
   - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
- - response: an array of user objects:
+- response: an array of user objects:
 
 ```
         [
