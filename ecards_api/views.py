@@ -3,6 +3,7 @@ from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from ecards_api.models import GreetingCard, Follow
 from ecards_api.serializers import CardSerializer, FollowSerializer
+from ecards_api.serializers import UserSerializer
 from ecards_api.filters import IsOwnerFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
 from ecards_api.permissions import IsOwner
@@ -85,3 +86,10 @@ class FollowersRemove(generics.DestroyAPIView):
 	permission_classes = [permissions.IsAuthenticated, IsOwner]
 
 
+"""
+GET /users - get list of all users
+"""
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
