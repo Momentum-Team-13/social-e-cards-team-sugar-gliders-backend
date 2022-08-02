@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='greetingcard',
             name='card_color',
-            field=models.CharField(max_length=100, null=True),
+            field=models.CharField(max_length=200, null=True),
         ),
         migrations.AlterField(
             model_name='greetingcard',
             name='card_image',
-            field=models.CharField(blank=True, max_length=100, null=True),
+            field=models.CharField(blank=True, max_length=200, null=True),
         ),
     ]
