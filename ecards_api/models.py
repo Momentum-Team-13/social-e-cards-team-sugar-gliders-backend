@@ -23,8 +23,8 @@ class GreetingCard(TimeStamp):
 	card_owner = models.ForeignKey('auth.User', related_name='greeting_cards', on_delete=models.CASCADE)
 	card_inner_message = models.TextField(max_length=300)
 	card_outer_message = models.TextField(max_length=300)
-	card_image = models.TextField(max_length=255, null=True, blank=True)
-	card_image_file = models.ImageField(upload_to='card_images', null=True, blank=True, max_length=355)
+	card_image = models.TextField(null=True, blank=True)
+	card_image_file = models.ImageField(upload_to='card_images', null=True, blank=True)
 	
 
 class Follow(TimeStamp):
