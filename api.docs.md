@@ -151,7 +151,9 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
   - url: `<BASE_URL>/ecards/`
   - data: you need to set authorization header with the token as the value
     - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-    - JSON data in request body: `{ "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image"}`
+    - JSON data in request body:
+      - `card_image` is a string and `card_image_file` is an image file object. Both are optional you can choose either one.
+      - `{ "card_inner_message": "test inner message", "card_outer_message": "test outer message", "card_image": "test card image", "card_image_file": <IMAGE_FILE_OBJECT>}`
   - response: 201 Created:
 
 ```
@@ -168,7 +170,8 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_color": null,
             "card_inner_message": "inner message 5",
             "card_outer_message": "hello 5",
-            "card_image": "image 5"
+            "card_image": "image 5",
+            "card_image_file": <IMAGE_URL>
           }
 
 ```
@@ -198,7 +201,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
               "card_inner_message": "test inner message",
               "card_outer_message": "test outer message",
               "card_image": "test card image",
-              "card_owner": 1
+              "card_image_file": null
             },
             {
               "id": 2,
@@ -214,7 +217,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
               "card_inner_message": "test inner message 2",
               "card_outer_message": "test outer message 2",
               "card_image": "test card image 2",
-              "card_owner": 1
+              "card_image_file": null
             }
           ]
 
@@ -244,7 +247,8 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_color": null,
             "card_inner_message": "inner message 3",
             "card_outer_message": "hello 3",
-            "card_image": "image 3"
+            "card_image": "image 3",
+            "card_image_file": null
         },
         {
             "id": 4,
@@ -259,7 +263,8 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_color": null,
             "card_inner_message": "inner message 5",
             "card_outer_message": "hello 5",
-            "card_image": "image 5"
+            "card_image": "image 5",
+            "card_image_file": null
         }
     ]
 
@@ -290,6 +295,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_inner_message": "inner message 3",
             "card_outer_message": "hello 3",
             "card_image": "image 3"
+            "card_image_file": null
         },
         {
             "id": 4,
@@ -304,7 +310,8 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_color": null,
             "card_inner_message": "inner message 5",
             "card_outer_message": "hello 5",
-            "card_image": "image 5"
+            "card_image": "image 5",
+            "card_image_file": null
         }
     ]
 
@@ -332,7 +339,12 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_inner_message": "test inner message 2",
             "card_outer_message": "test outer message 2",
             "card_image": "test card image 2",
-            "card_owner": 1
+            "card_owner": {
+                "id": 2,
+                "username": "test user 2",
+                "email": ""
+            },
+            "card_image_file": null
           }
         ]
 
@@ -378,7 +390,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
             "card_inner_message": "test inner message Patch",
             "card_outer_message": "test outer message Patch",
             "card_image": "test card image Patch",
-            "card_owner": 1
+            "card_owner": 1,
           }
         ]
 
@@ -437,7 +449,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 - url: `<BASE_URL>/users/me`
 - data: you need to set authorization header with the token as the value
   - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
- - response: an array of users updated objects:
+- response: an array of users updated objects:
 
 ```
       {
@@ -447,4 +459,3 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
       }
 
 ```
-
