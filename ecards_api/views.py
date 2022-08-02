@@ -10,6 +10,7 @@ from ecards_api.permissions import IsOwner, TheOwner
 from rest_framework.response import Response
 import requests
 from django.contrib.auth.models import User
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 
 """
@@ -22,6 +23,7 @@ class GreetingCardCreate(generics.ListCreateAPIView):
     queryset = GreetingCard.objects.all()
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def perform_create(self, serializer):
         serializer.save(card_owner=self.request.user)
