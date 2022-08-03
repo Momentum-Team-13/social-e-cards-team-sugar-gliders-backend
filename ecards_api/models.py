@@ -24,7 +24,7 @@ class GreetingCard(TimeStamp):
 	card_inner_message = models.TextField(max_length=400)
 	card_outer_message = models.TextField(max_length=400)
 	card_image = models.TextField(max_length=600, null=True, blank=True)
-	# card_image_file = models.ImageField(upload_to='card_images', null=True, blank=True, max_length=600)
+	card_image_file = models.ImageField(upload_to='card_images', null=True, blank=True, max_length=600)
 	
 
 class Follow(TimeStamp):
