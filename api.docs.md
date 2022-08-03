@@ -68,7 +68,6 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 ## Following
 
 - **Follow a user**
-
   - method: `POST`
   - url: `<BASE_URL>/followers/`
   - data: you need to set authorization header with the token as the value and send the user id in the request body (the id of the user to follow):
@@ -76,7 +75,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
     - JSON data in request body: `{ "following": 2 }`
   - response a user object:
 
-    ```
+```
       {
         "id": 15,
         "user_following": {
@@ -86,7 +85,7 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
         },
         "following": 1
       }
-    ```
+```
 
 <br />
 
@@ -353,14 +352,14 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
  <br />
 
 - **Edit only my selected greeting card**
-- method: `PATCH`
-- url: `<BASE_URL>/ecards/<int:pk`
-- data: you need to set authorization header with the token as the value
-  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-- response: an updated array of the objects that were changed for the particular card:
+  - method: `PATCH`
+  - url: `<BASE_URL>/ecards/<int:pk`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: an updated array of the objects that were changed for the particular card:
 
 ```
-  Example:
+        Example:
 
         Before PATCH (edit/udpate):
         [
@@ -399,11 +398,12 @@ Get's you a free meme to lift your spirit whenever you're feeling down 😌
 <br />
 
 - **Delete only my selected greeting card**
-- method: `DELETE`
-- url: `<BASE_URL>/ecards/<int:pk`
-- data: you need to set authorization header with the token as the value
-  - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
-- response: No Response
+
+  - method: `DELETE`
+  - url: `<BASE_URL>/ecards/<int:pk`
+  - data: you need to set authorization header with the token as the value
+    - Example: `Authorization: Token b4eecdcb2731a4a1383ad2ae15a2eb2fd6a1ac3d`
+  - response: No Response
 
   <br />
 
