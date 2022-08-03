@@ -6,7 +6,7 @@ Base url for all endpoints:
 
 ## Home
 
-Get's you a free meme to lift your spirit whenever you're feeling down 😌
+Get a free meme to lift your spirit whenever you're feeling down 😌
 
 - method: `GET`
 - url: `<BASE_URL>`
