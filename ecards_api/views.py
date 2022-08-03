@@ -6,7 +6,7 @@ from ecards_api.serializers import CardSerializer, FollowSerializer
 from ecards_api.serializers import UserSerializer
 from ecards_api.filters import IsOwnerFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
-from ecards_api.permissions import IsOwner, TheOwner
+from ecards_api.permissions import IsOwner, TheOwner, IsOwnerOrReadOnly
 from rest_framework.response import Response
 import requests
 from django.contrib.auth.models import User
@@ -58,7 +58,8 @@ Get /ecards/<int:pk - show the chosen greeting card
 class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
     queryset = GreetingCard.objects.all()
     serializer_class = CardSerializer
-    permission_classes = [permissions.IsAuthenticated, TheOwner]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permissions.IsAuthenticatedOrReadOnly
 
 
 # Create your views here.
