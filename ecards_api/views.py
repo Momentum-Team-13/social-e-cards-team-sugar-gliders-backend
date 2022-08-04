@@ -59,8 +59,6 @@ class GreetingCardEdit(generics.RetrieveUpdateDestroyAPIView):
     queryset = GreetingCard.objects.all()
     serializer_class = CardSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-    permissions.IsAuthenticatedOrReadOnly
-
 
 # Create your views here.
 """
