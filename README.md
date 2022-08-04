@@ -11,11 +11,12 @@ Developers:
 - Andres Alcocer
 - Ryan Frenia
 
-## Starting the app
+## Starting the app locally
 
 Make sure you have python3 and pipenv installed
 
 - Clone repository `git clone https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend.git`
+- Activate virtual environment: `pipenv shell` (in project directory)
 - `cd` into project directory and install package dependencies: `pipenv install`
 - Create a `.env` file in `core/` directory. This app uses amazon sw3 buckets to store images. You will need to create one to input your credentials:
 
@@ -29,3 +30,5 @@ Make sure you have python3 and pipenv installed
     AWS_S3_FILE_OVERWRITE=False
 
 ```
+
+- Run server locally: `python manage.py runserver`
