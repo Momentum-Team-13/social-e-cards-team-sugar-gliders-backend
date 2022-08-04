@@ -4,7 +4,7 @@ Production url: <https://sg-ecard-api.herokuapp.com>
 
 The social e-cards application lets users sign up, create greeting cards, and follow each other. A user can see cards shown from newest to oldest: they can see a collection of their own cards, a collection of cards by users they follow, and a colletion of all cards.
 
-This repository serves two frontend applications. You can find the [documentation](https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/blob/main/api.docs.md) for the endpoints in this repository.
+This api serves two frontend applications. You can find the [documentation](https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/blob/main/api.docs.md) for the endpoints in this repository.
 
 Developers:
 
